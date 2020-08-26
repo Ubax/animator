@@ -1,5 +1,5 @@
-import { Animation, Frame } from "./types";
-import { hasFrame } from "./index";
+import { Animation, Frame } from "../types";
+import { hasFrame } from "../animationsUtils";
 
 export default () => {
   test("Frame exists", () => {
