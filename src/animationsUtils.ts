@@ -1,20 +1,28 @@
-import { Animation, Frame, Position2D } from "./types";
+import { Animation, Frame, Position2D, VisualElement } from "./types";
 
-export const hasFrame = (time: number, animation: Animation): boolean =>
-  !!animation.frames[time];
+export const hasFrame = <ElementType extends VisualElement>(
+  time: number,
+  animation: Animation<ElementType>
+): boolean => !!animation.frames[time];
 
-export const getFirstFrameTime = (animaton: Animation): number =>
+export const getFirstFrameTime = <ElementType extends VisualElement>(
+  animaton: Animation<ElementType>
+): number =>
   Math.min(...Object.keys(animaton.frames).map((key) => parseFloat(key)));
 
-export const getLastFrameTime = (animaton: Animation): number =>
+export const getLastFrameTime = <ElementType extends VisualElement>(
+  animaton: Animation<ElementType>
+): number =>
   Math.max(...Object.keys(animaton.frames).map((key) => parseFloat(key)));
 
-export const getExistingFrame = (time: number, animation: Animation): Frame =>
-  animation.frames[time];
-
-export const getNextFrameTime = (
+export const getExistingFrame = <ElementType extends VisualElement>(
   time: number,
-  animation: Animation
+  animation: Animation<ElementType>
+): Frame<ElementType> => animation.frames[time];
+
+export const getNextFrameTime = <ElementType extends VisualElement>(
+  time: number,
+  animation: Animation<ElementType>
 ): number => {
   const sortedTimes = Object.keys(animation.frames)
     .map((key) => parseFloat(key))
@@ -26,9 +34,9 @@ export const getNextFrameTime = (
   return nextTime;
 };
 
-export const getPrevFrameTime = (
+export const getPrevFrameTime = <ElementType extends VisualElement>(
   time: number,
-  animation: Animation
+  animation: Animation<ElementType>
 ): number => {
   const sortedTimes = Object.keys(animation.frames)
     .map((key) => parseFloat(key))
@@ -41,8 +49,9 @@ export const getPrevFrameTime = (
   return prevTime;
 };
 
-export const getElementsIds = (frame: Frame): string[] =>
-  frame.elements.map((element) => element.id);
+export const getElementsIds = <ElementType extends VisualElement>(
+  frame: Frame<ElementType>
+): string[] => frame.elements.map((element) => element.id);
 
 export const generateNexPositionCalc = (ratio: number) => {
   const calculateNextValue = (prevValue: number, nextValue: number): number =>

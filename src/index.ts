@@ -1,4 +1,4 @@
-import { Animation, Frame } from "./types";
+import { Animation, Frame, VisualElement } from "./types";
 import {
   hasFrame,
   getExistingFrame,
@@ -12,7 +12,10 @@ import {
 import { intersection } from "lodash";
 export * from "./types";
 
-export const getFrame = (time: number, animation: Animation): Frame => {
+export const getFrame = <ElementType extends VisualElement>(
+  time: number,
+  animation: Animation<ElementType>
+): Frame<ElementType> => {
   if (hasFrame(time, animation)) {
     return getExistingFrame(time, animation);
   }
