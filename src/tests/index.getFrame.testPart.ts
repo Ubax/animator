@@ -1,7 +1,7 @@
 import { Animation, Frame, Position2D, VisualElement } from "../types";
 import { getFrame } from "../";
 
-const testFrame = (gottenFrame: Frame, expectedFrame: Frame) => {
+const testFrame = (gottenFrame: Frame<VisualElement>, expectedFrame: Frame<VisualElement>) => {
   expect(gottenFrame.time).toBe(expectedFrame.time);
   expect(Array.isArray(gottenFrame.elements)).toBe(true);
   expect(gottenFrame.elements.length).toBe(expectedFrame.elements.length);

@@ -1,6 +1,6 @@
 {
   "name": "@ubax/animator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Simple liblary, that can be used to make linear animations",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -8,7 +8,7 @@
   "scripts": {
     "test": "jest",
     "build": "tsc",
-    "prepublish": "tsc"
+    "prepublish": "rm -rf dist && tsc"
   },
   "repository": {
     "type": "git",
